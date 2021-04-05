@@ -1,9 +1,13 @@
 class MoviesController < ApplicationController
-  def index
-    binding.pry
+  def show
+    movies = Movie.where(id: show_params)
+    
+    render json: movies.as_json, status: :ok
   end
 
-  def show
-    binding.pry
+  private
+
+  def show_params
+    params.permit(:ids => [])
   end
 end
