@@ -11,12 +11,13 @@ class Actor < ApplicationRecord
       SELECT actor_id, count(*) movie_count 
       FROM movie_actors
       WHERE movie_id IN (SELECT movie_id FROM movie_actors WHERE actor_id = ?)
+      AND actor_id != ?
       GROUP BY actor_id
       ORDER BY movie_count desc
       LIMIT 5
     SQL
 
-    sanitized_sql = ActiveRecord::Base.sanitize_sql([sql, id])
+    sanitized_sql = ActiveRecord::Base.sanitize_sql([sql, id, id])
     top_5 = ActiveRecord::Base.connection.execute(sanitized_sql)
 
     # This could all be done in one SQL request, I decided to split it up so we can

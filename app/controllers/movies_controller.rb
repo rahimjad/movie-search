@@ -1,8 +1,8 @@
 class MoviesController < ApplicationController
   def show
-    movies = Movie.where(id: show_params)
+    movies = Movie.where(id: show_params[:ids])
     
-    render json: movies.as_json, status: :ok
+    render json: movies.as_json(include: :actors), status: :ok
   end
 
   private
