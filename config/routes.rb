@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   get 'actors',  to: 'actors#show'
 
   # This will load the DB records from routes provided for the challenge
-  put 'data_load', to: 'data_load#init'
+  put 'load_data', to: 'load_data#init'
 end

@@ -6,7 +6,7 @@ class Actor < ApplicationRecord
     # Personal preference to use pure SQL queries for more complex relationships
     # as it is easier to read IMO. Eventually more complex queries can be extracted
     # as fixtures. I chose this approach over Scopes, however I know this could easily
-    # be a scope
+    # be a scope.
     sql = <<~SQL
       SELECT actor_id, count(*) movie_count 
       FROM movie_actors
